@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useState, useEffect }from 'react'
 import axios from '../services/axios';
 
 const Products = () => {
@@ -24,7 +24,14 @@ const Products = () => {
     }, []);
 
     const handleSubmit = async () => {
-        await createProduct(form);
+        // await createProduct(form);
+        try {
+            const response = await axios.post(`/products`, form);
+            console.log("Response :", response);
+            
+        } catch (error) {
+            console.log("Error :", error);
+        }
         loadProducts();
     };
 
